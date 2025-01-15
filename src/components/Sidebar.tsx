@@ -1,21 +1,12 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import { addNewProject } from "../store/projects/projectsSlice";
-import { v4 as uuidv4 } from 'uuid';
 import { ProjectsList } from "./ProjectsList";
+// import { useAppSelector } from "../hooks/store";
 
 export function Sidebar() {
 
+  // const projects = useAppSelector((state) => state.project);
   const [ projectName, setProjectName ] = useState('');
-  const dispatch = useDispatch();
-  const projects = useSelector((state: RootState) => state.project);
-
-  const handleAddProject = () => {
-    if (projectName === '') return;
-    dispatch(addNewProject({ id: uuidv4(), name: projectName }));
-    setProjectName('');
-  }
+  
 
   return (
     <div className="sidebar">
@@ -34,16 +25,13 @@ export function Sidebar() {
 
         <button 
           className="create-project-button" 
-          onClick={handleAddProject}
         >
           <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  className="icon icon-tabler icons-tabler-outline icon-tabler-circle-plus"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /><path d="M9 12h6" /><path d="M12 9v6" /></svg>
           Create a new project
         </button>
 
         <div className="project-list">
-          {projects.map((project) => (
-            <ProjectsList key={project.id} project={project} />
-          ))}
+          <ProjectsList />
         </div>
       </div>
     </div>

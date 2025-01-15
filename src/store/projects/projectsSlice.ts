@@ -1,30 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-export interface ProjectState {
-  id: string;
+export interface Project {
   name: string;
 }
 
-const initialState: ProjectState[] = [];
+export interface ProjectWithId extends Project {
+  id: string;
+}
+
+const initialState: ProjectWithId[] = [];
 
 export const ProjectSlice = createSlice({
-  name: 'projects',
+  name: "project",
   initialState,
   reducers: {
-    addNewProject: (state, action: PayloadAction<{ id: string, name: string }>) => {
-      state.push(action.payload);
+    addNewProject: (state, action) => {
+      return [...state, action.payload];
     },
-    deleteProject: (state, action: PayloadAction<string>) => {
-      state = state.filter(project => project.id !== action.payload);
-    },
-    updateProject: (state, action: PayloadAction<{ id: string, name: string }>) => {
-      const projectIndex = state.findIndex(project => project.id === action.payload.id);
-      state[projectIndex].name = action.payload.name;
-    },
+    deleteProjectById: (state, action) => {
+      const id = action.payload;
+      return state.filter((project) => project.id !== id);
+    }
   },
-})
+});
 
-export const { addNewProject, deleteProject, updateProject } = ProjectSlice.actions
+export default ProjectSlice.reducer;
 
-export default ProjectSlice.reducer
+export const { addNewProject, deleteProjectById } = ProjectSlice.actions;

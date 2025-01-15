@@ -1,10 +1,10 @@
 body {
   margin: 0;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  color: #4a4e69;
+  color: #283618;
 }
 hr {
-  border: 1px solid #4a4e69;
+  border: 1px solid #283618;
   width: 80%;
 }
 .container {
@@ -13,22 +13,24 @@ hr {
   height: 100vh;
 }
 .sidebar {
-  background-color: #c9ada7;
+  background-color: #606c38;
   flex: 30%;
 }
 .content {
   flex: 70%;
-  background-color: #9a8c98;
+  background-color: #fefae0;
 }
 .sidebar-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  gap: 10px;
 }
 .create-project-button {
   display: flex;
-  background-color: #b69d97;
+  background-color: #6a994e;
+  color: #f2e9e4;
   border: none;
   cursor: pointer;
   padding: 15px;
@@ -36,12 +38,11 @@ hr {
   font-size: 15px;
   align-items: center;
   gap: 5px;
-  box-shadow: 0px 0px 10px #b69d97;
+  box-shadow: 0px 0px 10px #283618;
   margin-top: 10px;
-  color: #4a4e69;
 }
 .create-project-button:hover {
-  background-color: #a08a85;
+  background-color: #52773c;
 }
 .project-name-input {
   border: none;
@@ -49,9 +50,64 @@ hr {
   padding: 10px;
   border-radius: 30px;
   font-size: 15px;
-  color: #4a4e69;
+  color: #283618;
   width: 80%;
+  box-shadow: 0px 0px 10px #283618;
 }
 .project-name-input:focus {
   outline: none;
+}
+.project-ul {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  width: 80%;
+}
+.project-item {
+  background-color: #fefae0;
+  width: 80%;
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 15px;
+  box-shadow: 0px 0px 10px #283618;
+  color: #283618;
+}
+.project-item:hover {
+  background-color: #ddd9c2;
+}
+.delete-project-button {
+  display: flex;
+  align-items: center;
+  background-color: #b69d97;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 15px;
+  box-shadow: 0px 0px 10px #283618;
+  color: #f2e9e4;
+  background-color: #bc4749;
+}
+.update-project-button {
+  display: flex;
+  align-items: center;
+  background-color: #b69d97;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 15px;
+  box-shadow: 0px 0px 10px #283618;
+  color: #f2e9e4;
+  background-color: #197278;
 }

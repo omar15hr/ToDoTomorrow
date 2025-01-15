@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { addNewProject } from "../store/projects/projectsSlice";
 import { v4 as uuidv4 } from 'uuid';
+import { ProjectsList } from "./ProjectsList";
 
 export function Sidebar() {
 
@@ -39,11 +40,11 @@ export function Sidebar() {
           Create a new project
         </button>
 
-        <ul>
-        {projects.map((project) => (
-          <li key={project.id}>{project.name}</li>
-        ))}
-      </ul>
+        <div className="project-list">
+          {projects.map((project) => (
+            <ProjectsList key={project.id} project={project} />
+          ))}
+        </div>
       </div>
     </div>
   )

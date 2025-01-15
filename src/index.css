@@ -43,3 +43,15 @@ hr {
 .create-project-button:hover {
   background-color: #a08a85;
 }
+.project-name-input {
+  border: none;
+  background-color: #f2e9e4;
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 15px;
+  color: #4a4e69;
+  width: 80%;
+}
+.project-name-input:focus {
+  outline: none;
+}

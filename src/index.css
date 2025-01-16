@@ -71,9 +71,25 @@ hr {
   padding: 10px;
   width: 80%;
 }
+.project-item-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+.project-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 .project-item {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   background-color: #fefae0;
-  width: 80%;
+  width: 100%;
   border: none;
   cursor: pointer;
   padding: 15px;

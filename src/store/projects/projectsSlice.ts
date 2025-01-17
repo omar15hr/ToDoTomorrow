@@ -1,16 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type ProjectId = string;
-
-export interface Project {
-  name: string;
-}
-
-export interface ProjectWithId extends Project {
-  id: ProjectId;
-}
-
-const initialState: ProjectWithId[] = [
+const DEFAULT_STATE = [
   {
     id: "1",
     name: "Project 1",
@@ -23,14 +13,33 @@ const initialState: ProjectWithId[] = [
     id: "3",
     name: "Project 3",
   },
-];
+]
+
+export type ProjectId = string;
+
+export interface Project {
+  name: string;
+}
+
+export interface ProjectWithId extends Project {
+  id: ProjectId;
+}
+
+const initialState: ProjectWithId[] = (() => {
+  const persistedState = localStorage.getItem('__redux__state__');
+  if (persistedState) {
+    return JSON.parse(persistedState).projects;
+  }
+  return DEFAULT_STATE;
+})();
 
 export const ProjectSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
-    addNewProject: (state, action) => {
-      return [...state, action.payload];
+    addNewProject: (state, action: PayloadAction<Project>) => {
+      const id = crypto.randomUUID();
+      return [...state, { id, ...action.payload }];
     },
     deleteProjectById: (state, action: PayloadAction<ProjectId>) => {
       const id = action.payload;

@@ -44,10 +44,18 @@ hr {
 .create-project-button:hover {
   background-color: #52773c;
 }
+.create-project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%
+}
 .project-name-input {
   border: none;
   background-color: #f2e9e4;
-  padding: 10px;
+  padding: 20px;
   border-radius: 30px;
   font-size: 15px;
   color: #283618;

@@ -1,21 +1,17 @@
-import { useAppDispatch, useAppSelector } from "../hooks/store";
-import { deleteProjectById, ProjectId } from "../store/projects/projectsSlice";
+import { useAppSelector } from "../hooks/store";
+import { useProjectActions } from "../hooks/useProjectActions";
 
 export function ProjectsList() {
   const projects = useAppSelector((state) => state.projects);
-  const dispatch = useAppDispatch();
-
-  const handleDeleteProject = (id: ProjectId) => {
-    dispatch(deleteProjectById(id));
-  };
-
+  const { removeProject } = useProjectActions();
+  
   return (
     <div className="project-ul">
       {projects.map((item) => (
         <div key={item.id} className="project-item-container">
           <span className="project-item">{item.name}</span>
           <div className="project-buttons">
-            <button onClick={() => handleDeleteProject(item.id)} className="delete-project-button">
+            <button onClick={() => removeProject(item.id)} className="delete-project-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

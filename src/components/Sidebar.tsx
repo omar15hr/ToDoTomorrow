@@ -1,18 +1,28 @@
+import { useState } from "react";
 import { useProjectActions } from "../hooks/useProjectActions";
 import { ProjectsList } from "./ProjectsList";
 
 export function Sidebar() {
-
   const { addProject } = useProjectActions();
+  const [result, setResult] = useState<"success" | "error" | null>(null);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    setResult(null);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-
     const name = formData.get("name") as string;
 
-    addProject({name});
+    if (!name) {
+      return setResult("error");
+    }
+
+    addProject({ name });
+    setResult("success");
+
+    form.reset();
   };
 
   return (
@@ -22,16 +32,19 @@ export function Sidebar() {
         <p>A simple to do list app</p>
         <hr />
 
-        <form 
-          onSubmit={handleSubmit} 
-          className="create-project-form"
-        >
+        <form onSubmit={handleSubmit} className="create-project-form">
           <input
             type="text"
             name="name"
             placeholder="Project name"
             className="project-name-input"
           />
+
+          <span className="project-error">
+            {result === "error" && (
+              <span>Project name is required</span>
+            )}
+          </span>
 
           <button className="create-project-button">
             <svg

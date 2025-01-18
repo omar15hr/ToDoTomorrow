@@ -10,7 +10,7 @@ hr {
 .container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  min-height: 100vh;
 }
 .sidebar {
   background-color: #606c38;
@@ -134,4 +134,10 @@ hr {
   box-shadow: 0px 0px 10px #283618;
   color: #f2e9e4;
   background-color: #197278;
+}
+.project-error {
+  color: #f2e9e4;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
 }

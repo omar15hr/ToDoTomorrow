@@ -141,3 +141,9 @@ hr {
   font-weight: bold;
   margin-top: 10px;
 }
+.error-item {
+  background-color: #bc4749;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+}

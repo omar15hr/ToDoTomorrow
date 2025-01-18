@@ -42,7 +42,7 @@ export function Sidebar() {
 
           <span className="project-error">
             {result === "error" && (
-              <span>Project name is required</span>
+              <span className="error-item">Project name is required</span>
             )}
           </span>
 

@@ -1,5 +1,6 @@
 import { Sidebar } from "./components/Sidebar"
 import { ToDoGrid } from "./components/ToDoGrid"
+import { Toaster } from "sonner"
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <div className="container">
       <Sidebar />
       <ToDoGrid />
+      <Toaster richColors />
     </div>
   )
 }

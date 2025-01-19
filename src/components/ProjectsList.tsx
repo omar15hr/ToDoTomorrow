@@ -1,9 +1,9 @@
 import { useAppSelector } from "../hooks/store";
 import { useProjectActions } from "../hooks/useProjectActions";
-import { ProjectId } from "../store/projects/projectsSlice";
+import { ProjectWithId } from "../store/projects/projectsSlice";
 
 interface ProjectsListProps {
-  getProjectId: (id: ProjectId) => void;
+  getProjectId: (project: ProjectWithId) => void;
 }
 
 export function ProjectsList({ getProjectId }: ProjectsListProps) {
@@ -14,7 +14,12 @@ export function ProjectsList({ getProjectId }: ProjectsListProps) {
     <div className="project-ul">
       {projects.map((item) => (
         <div key={item.id} className="project-item-container">
-          <span className="project-item" onClick={() => getProjectId(item.id)}>{item.name}</span>
+          <span 
+            className="project-item" 
+            onClick={() => getProjectId(item)}
+          >
+            {item.name}
+          </span>
           <div className="project-buttons">
             <button onClick={() => removeProject(item.id)} className="delete-project-button">
               <svg

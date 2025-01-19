@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useProjectActions } from "../hooks/useProjectActions";
 import { ProjectsList } from "./ProjectsList";
-import { ProjectId } from "../store/projects/projectsSlice";
+import { ProjectWithId } from "../store/projects/projectsSlice";
 
 interface SidebarProps {
-  getProject: (id: ProjectId) => void;
+  getProject: (project: ProjectWithId) => void;
 }
 
 export function Sidebar({ getProject }: SidebarProps) {
 
-  const getProjectId = (id: ProjectId) => {
-    getProject(id);
+  const getProjectId = (project: ProjectWithId) => {
+    getProject(project);
   }
   
   const { addProject } = useProjectActions();

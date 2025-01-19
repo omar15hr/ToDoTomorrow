@@ -2,16 +2,16 @@ import { useState } from "react"
 import { Sidebar } from "./components/Sidebar"
 import { ToDoGrid } from "./components/ToDoGrid"
 import { Toaster } from "sonner"
-import { ProjectId } from "./store/projects/projectsSlice";
+import { ProjectWithId } from "./store/projects/projectsSlice";
 
 function App() {
 
-  const [project, setProject] = useState<ProjectId>('');
+  const [project, setProject] = useState<ProjectWithId | null>(null);
 
   return (
     <div className="container">
-      <Sidebar getProject={(id: ProjectId) => setProject(id)} />
-      <ToDoGrid projectId={project} />
+      <Sidebar getProject={(project: ProjectWithId) => setProject(project)} />
+      <ToDoGrid project={project} />
       <Toaster richColors />
     </div>
   )

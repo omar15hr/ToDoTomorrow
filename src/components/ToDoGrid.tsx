@@ -1,14 +1,14 @@
-import { ProjectId } from "../store/projects/projectsSlice";
+import { ProjectWithId } from "../store/projects/projectsSlice";
 
 interface ToDoGridProps {
-  projectId: ProjectId;
+  project: ProjectWithId | null;
 }
 
-export function ToDoGrid({ projectId }: ToDoGridProps) {
+export function ToDoGrid({ project }: ToDoGridProps) {
 
   return (
     <div className="content">
-      <div>{projectId}</div>
+      <div>{project?.name}</div>
     </div>
   )
 }

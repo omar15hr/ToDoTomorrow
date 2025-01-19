@@ -1,8 +1,18 @@
 import { useState } from "react";
 import { useProjectActions } from "../hooks/useProjectActions";
 import { ProjectsList } from "./ProjectsList";
+import { ProjectId } from "../store/projects/projectsSlice";
 
-export function Sidebar() {
+interface SidebarProps {
+  getProject: (id: ProjectId) => void;
+}
+
+export function Sidebar({ getProject }: SidebarProps) {
+
+  const getProjectId = (id: ProjectId) => {
+    getProject(id);
+  }
+  
   const { addProject } = useProjectActions();
   const [result, setResult] = useState<"success" | "error" | null>(null);
 
@@ -69,7 +79,7 @@ export function Sidebar() {
         </form>
 
         <div className="project-list">
-          <ProjectsList />
+          <ProjectsList getProjectId={getProjectId} />
         </div>
       </div>
     </div>

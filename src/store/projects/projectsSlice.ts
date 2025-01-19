@@ -44,8 +44,8 @@ export const ProjectSlice = createSlice({
     deleteProjectById: (state, action: PayloadAction<ProjectId>) => {
       const id = action.payload;
       return state.filter((project) => project.id !== id);
-    }
-  },
+    },
+  }
 });
 
 export default ProjectSlice.reducer;

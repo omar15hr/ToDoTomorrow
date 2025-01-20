@@ -17,6 +17,10 @@ hr {
   flex: 30%;
 }
 .content {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  padding: 20px;
   flex: 70%;
   background-color: #fefae0;
 }
@@ -146,4 +150,41 @@ hr {
   padding: 10px;
   border: none;
   border-radius: 20px;
+}
+.create-todo-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  background-color: #606c38;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px #283618;
+}
+.project-todo-input {
+  border: none;
+  border-radius: 40px;
+  padding: 15px;
+  width: 80%;
+  background-color: #f2e9e4;
+  box-shadow: 0px 0px 10px #283618;
+}
+.project-todo-input:focus {
+  outline: none;
+}
+.create-todo-button {
+  display: flex;
+  background-color: #6a994e;
+  color: #f2e9e4;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 30px;
+  font-size: 15px;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0px 0px 10px #283618;
+  margin-top: 10px;
 }

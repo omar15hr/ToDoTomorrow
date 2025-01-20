@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   color: #283618;
 }
 hr {
@@ -15,6 +16,9 @@ hr {
 .sidebar {
   background-color: #606c38;
   flex: 30%;
+}
+.sidebar.open {
+  transform: translateX(0);
 }
 .content {
   display: flex;
@@ -54,7 +58,7 @@ hr {
   gap: 10px;
   align-items: center;
   justify-content: center;
-  width: 100%
+  width: 100%;
 }
 .project-name-input {
   border: none;
@@ -157,7 +161,7 @@ hr {
   gap: 10px;
   align-items: center;
   width: 80%;
-  height: 170px;
+  height: 200px;
   background-color: #606c38;
   padding: 20px;
   border-radius: 20px;
@@ -234,7 +238,8 @@ hr {
 }
 .todo-title {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   font-size: 20px;
@@ -257,4 +262,54 @@ hr {
   justify-content: center;
   font-size: 50px;
   color: #8d8784a1;
+}
+@media (max-width: 768px) {
+  .background-text {
+    font-size: 20px;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  .icon-tabler-pencil {
+    width: 30px;
+  }
+}
+@media (max-width: 1180px) {
+  .background-text {
+    font-size: 30px;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  .icon-tabler-pencil {
+    width: 30px;
+  }
+}
+@media (max-width: 484px) {
+  .background-text {
+    font-size: 15px;
+    gap: 5px;
+    margin-top: 20px;
+  }
+  .icon-tabler-pencil {
+    width: 30px;
+  }
+}
+.toggle-sidebar-button {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  display: none;
+}
+.button-toggle-completed {
+  background-color: #515c2f;
+  border: none;
+  border-radius: 40px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.button-toggle-completed:hover {
+  background-color: #404925;
 }

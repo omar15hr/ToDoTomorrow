@@ -19,8 +19,8 @@ hr {
 .content {
   display: flex;
   flex-flow: column wrap;
-  justify-content: flex-start;
-  padding: 20px;
+  justify-content: center;
+  align-items: center;
   flex: 70%;
   background-color: #fefae0;
 }
@@ -85,7 +85,7 @@ hr {
 }
 .project-item-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
@@ -156,8 +156,8 @@ hr {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  width: 300px;
-  height: 300px;
+  width: 80%;
+  height: 170px;
   background-color: #606c38;
   padding: 20px;
   border-radius: 20px;
@@ -168,11 +168,22 @@ hr {
   border: none;
   border-radius: 40px;
   padding: 15px;
-  width: 80%;
+  width: 40%;
   background-color: #f2e9e4;
   box-shadow: 0px 0px 10px #283618;
 }
 .project-todo-input:focus {
+  outline: none;
+}
+.project-todo-input-description {
+  border: none;
+  border-radius: 40px;
+  padding: 15px;
+  width: 80%;
+  background-color: #f2e9e4;
+  box-shadow: 0px 0px 10px #283618;
+}
+.project-todo-input-description:focus {
   outline: none;
 }
 .create-todo-button {
@@ -200,8 +211,8 @@ hr {
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 100px;
   background-color: #606c38;
   padding: 20px;
   border-radius: 20px;
@@ -211,4 +222,13 @@ hr {
   font-size: 20px;
   font-weight: bold;
   color: #f2e9e4;
+}
+.input-edit-name-project {
+  border: none;
+  padding: 5px;
+  border-radius: 20px;
+  background-color: #f2e9e4;
+}
+.input-edit-name-project:focus {
+  outline: none;
 }

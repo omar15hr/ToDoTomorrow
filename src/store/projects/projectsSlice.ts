@@ -61,6 +61,8 @@ export type TodoId = string;
 export interface Todo {
   id: TodoId;
   title: string;
+  description: string;
+  completed: boolean;
   projectId: ProjectId;
 }
 
@@ -84,11 +86,16 @@ export const ProjectSlice = createSlice({
       const id = action.payload;
       return state.filter((project) => project.id !== id);
     },
-    // updateProject: (state, action: PayloadAction<Project>) => {
+    updateProjectsName: (state, action: PayloadAction<{id: ProjectId, name: string}>) => {
+      const {id, name} = action.payload;
+      const project = state.find((project) => project.id === id);
 
-    // },
+      if (!project) throw new Error(`Project with id ${id} not found`);
+
+      project.name = name;
+    },
     addNewTodo: (state, action: PayloadAction<Todo>) => {
-      const { projectId, title } = action.payload;
+      const { projectId, title, description } = action.payload;
       const project = state.find((project) => project.id === projectId);
     
       if (!project) {
@@ -98,6 +105,8 @@ export const ProjectSlice = createSlice({
       project.todos.push({
         id: crypto.randomUUID(),
         title,
+        description,
+        completed: false,
         projectId,
       });
 
@@ -114,4 +123,4 @@ export const ProjectSlice = createSlice({
 
 export default ProjectSlice.reducer;
 
-export const { addNewProject, deleteProjectById, addNewTodo } = ProjectSlice.actions;
+export const { addNewProject, deleteProjectById, updateProjectsName, addNewTodo } = ProjectSlice.actions;

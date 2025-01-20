@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAppSelector } from "../hooks/store";
 import { useProjectActions } from "../hooks/useProjectActions";
 import { ProjectWithId } from "../store/projects/projectsSlice";
@@ -7,8 +8,25 @@ interface ProjectsListProps {
 }
 
 export function ProjectsList({ getProjectId }: ProjectsListProps) {
+
   const projects = useAppSelector((state) => state.projects);
-  const { removeProject } = useProjectActions();
+  const { removeProject, updateProject } = useProjectActions();
+
+  const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
+  const [newProjectName, setNewProjectName] = useState<string>("");
+
+  const handleEditProject = (project: ProjectWithId) => {
+    setEditingProjectId(project.id);
+    setNewProjectName(project.name);
+  }
+
+  const handleUpdateProject = () => {
+    if (newProjectName.trim()) {
+      updateProject(editingProjectId as string, newProjectName);
+      setEditingProjectId(null);
+      setNewProjectName("");
+    }
+  };
   
   return (
     <div className="project-ul">
@@ -20,6 +38,18 @@ export function ProjectsList({ getProjectId }: ProjectsListProps) {
           >
             {item.name}
           </span>
+          <div>
+          {editingProjectId === item.id ? (
+              <input
+                type="text"
+                className="input-edit-name-project"
+                value={newProjectName}
+                onChange={(e) => setNewProjectName(e.target.value)}
+                onBlur={handleUpdateProject}
+                autoFocus
+              />
+            ) : ''}
+          </div>
           <div className="project-buttons">
             <button onClick={() => removeProject(item.id)} className="delete-project-button">
               <svg
@@ -42,7 +72,7 @@ export function ProjectsList({ getProjectId }: ProjectsListProps) {
                 <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
               </svg>
             </button>
-            <button className="update-project-button">
+            <button onClick={() => handleEditProject(item)} className="update-project-button">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"

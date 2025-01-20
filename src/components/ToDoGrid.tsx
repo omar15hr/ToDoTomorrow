@@ -8,15 +8,13 @@ interface ToDoGridProps {
 }
 
 export function ToDoGrid({ project }: ToDoGridProps) {
-
   const globalProjects = useAppSelector((state) => state.projects);
-  
+
   const selectedProject = globalProjects.find((p) => p.id === project?.id);
   const todos = selectedProject?.todos || [];
 
   const { addTodo } = useProjectActions();
   const [result, setResult] = useState<"success" | "error" | null>(null);
-  
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,26 +24,42 @@ export function ToDoGrid({ project }: ToDoGridProps) {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const title = formData.get("title") as string;
+    const description = formData.get("description") as string;
 
     if (!title) {
       return setResult("error");
     }
 
-    addTodo({title, projectId: project!.id});
+    const newTodo = {
+      title,
+      projectId: project!.id,
+      id: crypto.randomUUID(),
+      description,
+      completed: false
+    }
+
+    addTodo(newTodo);
     setResult("success");
+    console.log(newTodo);
 
     form.reset();
   };
 
   return (
     <div className="content">
-
-      <form onSubmit={handleSubmit} className="create-todo-form">
+      {selectedProject && (
+        <form onSubmit={handleSubmit} className="create-todo-form">
           <input
             type="text"
             name="title"
             placeholder="To do title"
             className="project-todo-input"
+          />
+          <input
+            type="text"
+            name="description"
+            placeholder="To do Description"
+            className="project-todo-input-description"
           />
 
           <button className="create-todo-button">
@@ -69,22 +83,22 @@ export function ToDoGrid({ project }: ToDoGridProps) {
             Create To Do
           </button>
         </form>
+      )}
 
-        <div className="project-todo-list">
-          {
-            todos?.map((todo) => (
-              <div className="project-todo-card" key={todo.id}>
-                <div>{todo.title}</div>
-              </div>
-            ))
-          }
-        </div>
+      <div className="project-todo-list">
+        {todos?.map((todo) => (
+          <div className="project-todo-card" key={todo.id}>
+            <div>{todo.title}</div>
+            <div>{todo.description}</div>
+          </div>
+        ))}
+      </div>
 
-        <span className="project-error">
-            {result === "error" && (
-              <span className="error-item">Project name is required</span>
-            )}
-          </span>
+      <span className="project-error">
+        {result === "error" && (
+          <span className="error-item">Project name is required</span>
+        )}
+      </span>
     </div>
-  )
+  );
 }

@@ -1,6 +1,14 @@
 import { toast } from "sonner";
-import { addNewProject, addNewTodo, deleteProjectById, ProjectId } from "../store/projects/projectsSlice";
+import { addNewProject, addNewTodo, deleteProjectById, ProjectId, updateProjectsName } from "../store/projects/projectsSlice";
 import { useAppDispatch } from "./store";
+
+export interface newTodoProps {
+  title: string,
+  projectId: ProjectId,
+  id: string,
+  description: string,
+  completed: boolean
+}
 
 export function useProjectActions() {
   const dispatch = useAppDispatch();
@@ -15,10 +23,15 @@ export function useProjectActions() {
     toast.success("Project deleted successfully");
   };
 
-  const addTodo = ({title, projectId}: {title: string, projectId: ProjectId}) => {
-    dispatch(addNewTodo({title, projectId, id: ''}));
+  const updateProject = (id: ProjectId, name: string) => {
+    dispatch(updateProjectsName({id, name}));
+    toast.info("Project name updated");
+  }
+
+  const addTodo = (newTodo: newTodoProps) => {
+    dispatch(addNewTodo(newTodo));
     toast.success("To do created successfully");
   }
 
-  return { addProject, removeProject, addTodo };
+  return { addProject, removeProject, updateProject, addTodo };
 }

@@ -4,12 +4,39 @@ const DEFAULT_STATE = [
   {
     id: "1",
     name: "Project 1",
-    todos: [],
+    todos: [
+      {
+        id: "1",
+        title: "To do 1",
+        projectId: "1",
+      },
+      {
+        id: "2",
+        title: "To do 2",
+        projectId: "1",
+      },
+      {
+        id: "3",
+        title: "To do 3",
+        projectId: "1",
+      }
+    ],
   },
   {
     id: "2",
     name: "Project 2",
-    todos: [],
+    todos: [
+      {
+        id: "3",
+        title: "To do 3",
+        projectId: "2",
+      },
+      {
+        id: "4",
+        title: "To do 4",
+        projectId: "2",
+      }
+    ],
   },
   {
     id: "3",
@@ -32,12 +59,9 @@ export interface ProjectWithId extends Project {
 export type TodoId = string;
 
 export interface Todo {
+  id: TodoId;
   title: string;
   projectId: ProjectId;
-}
-
-export interface TodoWithId extends Todo {
-  id: TodoId;
 }
 
 const initialState: ProjectWithId[] = (() => {
@@ -60,30 +84,34 @@ export const ProjectSlice = createSlice({
       const id = action.payload;
       return state.filter((project) => project.id !== id);
     },
-    updateProject: (state, action: PayloadAction<Project>) => {
+    // updateProject: (state, action: PayloadAction<Project>) => {
 
-    },
-    addTodo: (state, action: PayloadAction<Todo>) => {
-      const { projectId } = action.payload;
+    // },
+    addNewTodo: (state, action: PayloadAction<Todo>) => {
+      const { projectId, title } = action.payload;
       const project = state.find((project) => project.id === projectId);
-
+    
       if (!project) {
         throw new Error(`Project with id ${projectId} not found`);
       }
 
       project.todos.push({
-        ...action.payload,
+        id: crypto.randomUUID(),
+        title,
+        projectId,
       });
-    },
-    updateTodo: (state, action: PayloadAction<Todo>) => {
 
+      return state;
     },
-    deleteTodo: (state, action: PayloadAction<Todo>) => {
+    // updateTodo: (state, action: PayloadAction<Todo>) => {
 
-    },
+    // },
+    // deleteTodoById: (state, action: PayloadAction<Todo>) => {
+
+    // },
   }
 });
 
 export default ProjectSlice.reducer;
 
-export const { addNewProject, deleteProjectById, addTodo } = ProjectSlice.actions;
+export const { addNewProject, deleteProjectById, addNewTodo } = ProjectSlice.actions;

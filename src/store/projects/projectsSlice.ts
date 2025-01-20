@@ -1,49 +1,49 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const DEFAULT_STATE = [
-  {
-    id: "1",
-    name: "Project 1",
-    todos: [
-      {
-        id: "1",
-        title: "To do 1",
-        projectId: "1",
-      },
-      {
-        id: "2",
-        title: "To do 2",
-        projectId: "1",
-      },
-      {
-        id: "3",
-        title: "To do 3",
-        projectId: "1",
-      }
-    ],
-  },
-  {
-    id: "2",
-    name: "Project 2",
-    todos: [
-      {
-        id: "3",
-        title: "To do 3",
-        projectId: "2",
-      },
-      {
-        id: "4",
-        title: "To do 4",
-        projectId: "2",
-      }
-    ],
-  },
-  {
-    id: "3",
-    name: "Project 3",
-    todos: [],
-  },
-]
+// const DEFAULT_STATE = [
+//   {
+//     id: "1",
+//     name: "Project 1",
+//     todos: [
+//       {
+//         id: "1",
+//         title: "To do 1",
+//         projectId: "1",
+//       },
+//       {
+//         id: "2",
+//         title: "To do 2",
+//         projectId: "1",
+//       },
+//       {
+//         id: "3",
+//         title: "To do 3",
+//         projectId: "1",
+//       }
+//     ],
+//   },
+//   {
+//     id: "2",
+//     name: "Project 2",
+//     todos: [
+//       {
+//         id: "3",
+//         title: "To do 3",
+//         projectId: "2",
+//       },
+//       {
+//         id: "4",
+//         title: "To do 4",
+//         projectId: "2",
+//       }
+//     ],
+//   },
+//   {
+//     id: "3",
+//     name: "Project 3",
+//     todos: [],
+//   },
+// ]
 
 export type ProjectId = string;
 
@@ -68,10 +68,7 @@ export interface Todo {
 
 const initialState: ProjectWithId[] = (() => {
   const persistedState = localStorage.getItem('__redux__state__');
-  if (persistedState) {
-    return JSON.parse(persistedState).projects;
-  }
-  return DEFAULT_STATE;
+    return persistedState ? JSON.parse(persistedState).projects: [];
 })();
 
 export const ProjectSlice = createSlice({

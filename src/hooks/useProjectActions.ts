@@ -1,5 +1,6 @@
 import { toast } from "sonner";
-import { addNewProject, addNewTodo, deleteProjectById, deleteTodoById, ProjectId, TodoId, updateProjectsName } from "../store/projects/projectsSlice";
+import { addNewProject, addNewTodo, deleteProjectById, deleteTodoById, updateProjectsName } from "../store/projects/projectsSlice";
+import { ProjectId, TodoId } from "../interfaces/project.interface";
 import { useAppDispatch } from "./store";
 
 export interface newTodoProps {

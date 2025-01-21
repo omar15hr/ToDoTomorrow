@@ -120,6 +120,8 @@ hr {
 .delete-project-button {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 50%;
   background-color: #b69d97;
   border: none;
   cursor: pointer;

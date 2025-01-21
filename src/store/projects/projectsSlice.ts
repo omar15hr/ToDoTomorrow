@@ -1,30 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Project, ProjectId, ProjectWithId, Todo, TodoId } from "../../interfaces/project.interface";
 
-export type ProjectId = string;
+const getInitialState = (): ProjectWithId[] => {
+  try {
+    const persistedState = localStorage.getItem("__redux__state__");
+    return persistedState ? JSON.parse(persistedState).projects : [];
+  } catch {
+    console.error("Error loading persisted state.");
+    return [];
+  }
+};
 
-export interface Project {
-  name: string;
-  todos: Todo[];
-}
+const initialState: ProjectWithId[] = getInitialState();
 
-export interface ProjectWithId extends Project {
-  id: ProjectId;
-}
-
-export type TodoId = string;
-
-export interface Todo {
-  id: TodoId;
-  title: string;
-  description: string;
-  completed: boolean;
-  projectId: ProjectId;
-}
-
-const initialState: ProjectWithId[] = (() => {
-  const persistedState = localStorage.getItem("__redux__state__");
-  return persistedState ? JSON.parse(persistedState).projects : [];
-})();
 
 export const ProjectSlice = createSlice({
   name: "projects",
@@ -67,9 +55,6 @@ export const ProjectSlice = createSlice({
 
       return state;
     },
-    // updateTodo: (state, action: PayloadAction<Todo>) => {
-
-    // },
     deleteTodoById: (state, action: PayloadAction<TodoId>) => {
       const id = action.payload;
       return state.forEach((project) => {
